@@ -58,7 +58,7 @@ const services = ref<Service[]>([
   <section
     id="services"
     ref="servicesRef"
-    class="relative min-h-[40vh] py-8 sm:py-12 lg:py-20 bg-white dark:bg-gray-900 transition-all duration-1000"
+    class="relative min-h-[40vh] py-8 sm:py-12 lg:py-20 bg-white dark:bg-gray-900 transition-all duration-300"
     :class="{ 'opacity-0 translate-y-10': !isVisible, 'opacity-100 translate-y-0': isVisible }"
   >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

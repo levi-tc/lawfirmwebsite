@@ -2,4 +2,6 @@
 export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt'],
   compatibilityDate: '2025-02-05',
+  alias: {
+    '@/lib/utils': './lib/utils.ts'}
 })
