@@ -19,57 +19,57 @@ const showAll = ref(false)
 const blogPosts = ref<BlogPost[]>([
   {
     id: 1,
-    title: 'Understanding Corporate Law Reform 2024',
-    excerpt: 'Key changes in corporate law and their implications for businesses in the coming year.',
+    title: 'Înțelegerea Reformei Dreptului Corporativ 2024',
+    excerpt: 'Modificări cheie în dreptul corporativ și implicațiile acestora pentru companii în anul următor.',
     author: 'Sarah Johnson',
-    date: 'March 15, 2024',
+    date: '15 Martie 2024',
     image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=500&auto=format&fit=crop',
-    category: 'Corporate Law'
+    category: 'Drept Corporativ'
   },
   {
     id: 2,
-    title: 'Estate Planning Essentials',
-    excerpt: 'A comprehensive guide to protecting your assets and securing your family\'s future.',
-    author: 'Michael Chen',
-    date: 'March 12, 2024',
+    title: 'Elementele Esențiale ale Planificării Patrimoniale',
+    excerpt: 'Un ghid complet pentru protejarea activelor și asigurarea viitorului familiei tale.',
+    author: 'Mihai Chen',
+    date: '12 Martie 2024',
     image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=500&auto=format&fit=crop',
-    category: 'Estate Planning'
+    category: 'Planificare Patrimonială'
   },
   {
     id: 3,
-    title: 'Navigating Employment Law Changes',
-    excerpt: 'Recent developments in employment law and their impact on workplace policies.',
-    author: 'Emily Rodriguez',
-    date: 'March 10, 2024',
+    title: 'Navigarea prin Modificările Dreptului Muncii',
+    excerpt: 'Evoluții recente în dreptul muncii și impactul acestora asupra politicilor la locul de muncă.',
+    author: 'Elena Rodriguez',
+    date: '10 Martie 2024',
     image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=500&auto=format&fit=crop',
-    category: 'Employment Law'
+    category: 'Dreptul Muncii'
   },
   {
     id: 4,
-    title: 'Intellectual Property in Digital Age',
-    excerpt: 'Protecting your innovations and creative works in the modern digital landscape.',
+    title: 'Proprietatea Intelectuală în Era Digitală',
+    excerpt: 'Protejarea inovațiilor și a operelor creative în peisajul digital modern.',
     author: 'David Smith',
-    date: 'March 8, 2024',
+    date: '8 Martie 2024',
     image: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?q=80&w=500&auto=format&fit=crop',
-    category: 'IP Law'
+    category: 'Dreptul Proprietății Intelectuale'
   },
   {
     id: 5,
-    title: 'Family Law Updates 2024',
-    excerpt: 'Recent changes in family law and their implications for domestic cases.',
+    title: 'Actualizări în Dreptul Familiei 2024',
+    excerpt: 'Modificări recente în dreptul familiei și implicațiile acestora pentru cazurile domestice.',
     author: 'Lisa Anderson',
-    date: 'March 5, 2024',
+    date: '5 Martie 2024',
     image: 'https://images.unsplash.com/photo-1594608661623-aa0bd3a69d98?q=80&w=500&auto=format&fit=crop',
-    category: 'Family Law'
+    category: 'Dreptul Familiei'
   },
   {
     id: 6,
-    title: 'Real Estate Law Essentials',
-    excerpt: 'Understanding the fundamentals of property law and real estate transactions.',
+    title: 'Elementele Esențiale ale Dreptului Imobiliar',
+    excerpt: 'Înțelegerea fundamentelor dreptului proprietății și ale tranzacțiilor imobiliare.',
     author: 'James Wilson',
-    date: 'March 3, 2024',
+    date: '3 Martie 2024',
     image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=500&auto=format&fit=crop',
-    category: 'Real Estate Law'
+    category: 'Drept Imobiliar'
   }
 ])
 
@@ -106,8 +106,8 @@ onMounted(() => {
   >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Legal Insights</h2>
-        <p class="text-xl text-gray-600 dark:text-gray-300">Stay informed with our latest legal articles and updates</p>
+        <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Perspective Juridice</h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300">Rămâneți informați cu cele mai recente articole și actualizări juridice</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -148,7 +148,7 @@ onMounted(() => {
           variant="outline"
           class="text-lg px-8"
         >
-          {{ showAll ? 'Show Less' : 'Show More' }}
+          {{ showAll ? 'Arată Mai Puțin' : 'Arată Mai Mult' }}
         </Button>
       </div>
     </div>

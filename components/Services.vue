@@ -32,23 +32,23 @@ onMounted(() => {
 
 const services = ref<Service[]>([
   {
-    title: 'Corporate Law',
-    description: 'Expert guidance in business formation, mergers and acquisitions, and corporate governance.',
+    title: 'Drept Corporativ',
+    description: 'Consultanță specializată în formarea companiilor, fuziuni și achiziții, și guvernanță corporativă.',
     icon: 'M20 7L12 3L4 7M20 7L12 11M20 7V17L12 21M12 11L4 7M12 11V21M4 7V17L12 21'
   },
   {
-    title: 'Family Law',
-    description: 'Compassionate representation in divorce, custody, and family-related legal matters.',
+    title: 'Drept Familial',
+    description: 'Reprezentare cu empatie în divorț, custodie și alte aspecte juridice familiale.',
     icon: 'M2 20h.01m18 0h.01M4 20h.01m2 0h.01m2 0h.01m2 0h.01m2 0h.01M3 20a1 1 0 1 1 0-2a1 1 0 0 1 0 2m4 0a1 1 0 1 1 0-2a1 1 0 0 1 0 2m4 0a1 1 0 1 1 0-2a1 1 0 0 1 0 2M4 4h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1'
   },
   {
-    title: 'Real Estate Law',
-    description: 'Comprehensive legal services for property transactions, leasing, and real estate disputes.',
+    title: 'Drept Imobiliar',
+    description: 'Servicii juridice complete pentru tranzacții imobiliare, închirieri și litigii imobiliare.',
     icon: 'M3 21h18M3 10h18M3 7l9-4l9 4M4 10v11m16-11v11M8 14v3m4-3v3m4-3v3'
   },
   {
-    title: 'Litigation',
-    description: 'Strong advocacy and representation in civil and commercial litigation matters.',
+    title: 'Litigii',
+    description: 'Reprezentare și pledoarie puternică în litigii civile și comerciale.',
     icon: 'M3 21h18M3 7v1a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V7m-2-4H7a2 2 0 0 0-2 2v12m14-12v12M3 3l18 18'
   }
 ])

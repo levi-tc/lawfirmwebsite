@@ -34,17 +34,17 @@ onMounted(() => {
 
 const testimonials = ref<Testimonial[]>([
   {
-    name: 'Michael Thompson',
+    name: 'Mihai Tomescu',
     role: 'CEO, Tech Innovations Inc.',
     image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&h=200&auto=format&fit=crop',
-    content: 'The corporate law team provided exceptional guidance during our merger. Their expertise and attention to detail made a complex process seamless.',
+    content: 'Echipa de drept corporativ ne-a oferit îndrumare excepțională în timpul fuziunii noastre. Expertiza și atenția lor la detalii au făcut ca un proces complex să fie fără probleme.',
     rating: 5
   },
   {
-    name: 'Emily Rodriguez',
-    role: 'Small Business Owner',
+    name: 'Elena Rădulescu',
+    role: 'Proprietar de Afacere',
     image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&h=200&auto=format&fit=crop',
-    content: 'Their real estate legal team helped me navigate multiple property acquisitions. Their knowledge and professionalism are unmatched.',
+    content: 'Echipa lor juridică imobiliară m-a ajutat să navighez prin multiple achiziții de proprietăți. Cunoștințele și profesionalismul lor sunt de neegalat.',
     rating: 5
   },
   {
@@ -66,8 +66,8 @@ const testimonials = ref<Testimonial[]>([
   >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Client Testimonials</h2>
-        <p class="text-xl text-gray-600 dark:text-gray-300">What our clients say about us</p>
+        <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Testimoniale Clienți</h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300">Ce spun clienții noștri despre noi</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

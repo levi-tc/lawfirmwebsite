@@ -13,18 +13,18 @@ interface Attorney {
 
 const attorney = ref<Attorney>({
   name: 'Sarah Johnson',
-  role: 'Senior Partner',
+  role: 'Partener Senior',
   image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=500&h=500&auto=format&fit=crop',
-  description: 'With over 15 years of experience in corporate law, Sarah Johnson has established herself as a trusted advisor to businesses of all sizes. Her strategic approach and deep understanding of complex legal matters have consistently delivered exceptional results for her clients.',
+  description: 'Cu peste 15 ani de experiență în drept corporativ, Sarah Johnson s-a impus ca un consilier de încredere pentru companii de toate dimensiunile. Abordarea sa strategică și înțelegerea profundă a aspectelor juridice complexe au adus în mod constant rezultate excepționale pentru clienții săi.',
   specialties: [
-    'Corporate Law',
-    'Mergers & Acquisitions',
-    'Business Litigation',
-    'Contract Negotiation'
+    'Drept Corporativ',
+    'Fuziuni și Achiziții',
+    'Litigii Comerciale',
+    'Negociere Contracte'
   ],
   education: [
-    'J.D., Harvard Law School',
-    'B.A. in Economics, Yale University'
+    'Doctor în Drept, Harvard Law School',
+    'Licență în Economie, Yale University'
   ]
 })
 </script>
@@ -38,20 +38,20 @@ const attorney = ref<Attorney>({
           <!-- Text Content Section -->
           <div class="space-y-4">
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 dark:text-white">
-              Expert Legal
-              <span class="text-blue-600 block mt-2">Representation</span>
+              Expertiză in domeniul
+              <span class="text-blue-600 block mt-2">Juridic</span>
             </h1>
             <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto lg:mx-0">
-              Dedicated to providing exceptional legal services with a personalized approach to meet your unique needs.
+              Dedicați să oferim servicii juridice excepționale cu o abordare personalizată pentru a răspunde nevoilor dumneavoastră unice.
             </p>
           </div>
 
           <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <Button size="lg" class="text-base sm:text-lg bg-blue-600 hover:bg-blue-700 w-full sm:w-auto px-8" asChild>
-              <NuxtLink to="#contact">Schedule Consultation</NuxtLink>
+              <NuxtLink to="#contact">Programează o Consultație</NuxtLink>
             </Button>
             <Button size="lg" variant="outline" class="text-base sm:text-lg w-full sm:w-auto px-8" asChild>
-              <NuxtLink to="#services">Our Services</NuxtLink>
+              <NuxtLink to="#services">Serviciile Noastre</NuxtLink>
             </Button>
           </div>
         </div>
