@@ -61,7 +61,7 @@ const testimonials = ref<Testimonial[]>([
   <section
     id="testimonials"
     ref="testimonialsRef"
-    class="relative py-12 sm:py-24 dark:bg-gray-950 transition-all duration-1000"
+    class="relative py-16 sm:py-20 bg-gray-100 dark:bg-gray-950 transition-all duration-1000 flex items-center rounded-3xl mx-4 sm:mx-6 lg:mx-8"
     :class="{ 'opacity-0 translate-y-10': !isVisible, 'opacity-100 translate-y-0': isVisible }"
   >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
