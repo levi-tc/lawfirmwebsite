@@ -5,9 +5,9 @@ import { Button } from './ui/button'
 <template>
   <footer class="bg-gray-100 dark:bg-gray-900 mt-16 rounded-t-3xl">
     <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-      <div class="grid grid-cols-1 gap-8 lg:grid-cols-4">
+      <div class="grid grid-cols-1 gap-8 lg:grid-cols-4 text-center lg:text-left">
         <!-- Company Info -->
-        <div class="space-y-4">
+        <div class="space-y-4 flex flex-col items-center lg:items-start">
           <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Law Firm</h3>
           <p class="text-gray-600 dark:text-gray-300">
             Dedicated to providing exceptional legal services with integrity and professionalism.
@@ -35,7 +35,7 @@ import { Button } from './ui/button'
         </div>
 
         <!-- Quick Links -->
-        <div class="space-y-4">
+        <div class="space-y-4 flex flex-col items-center lg:items-start">
           <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Quick Links</h3>
           <ul class="space-y-3">
             <li>
@@ -51,7 +51,7 @@ import { Button } from './ui/button'
         </div>
 
         <!-- Contact Info -->
-        <div class="space-y-4">
+        <div class="space-y-4 flex flex-col items-center lg:items-start">
           <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Contact Info</h3>
           <ul class="space-y-3">
             <li class="flex items-center space-x-3 text-gray-600 dark:text-gray-300">
@@ -77,12 +77,12 @@ import { Button } from './ui/button'
         </div>
 
         <!-- Newsletter -->
-        <div class="space-y-4">
+        <div class="space-y-4 flex flex-col items-center lg:items-start">
           <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Newsletter</h3>
           <p class="text-gray-600 dark:text-gray-300">Subscribe to our newsletter for updates and legal insights.</p>
-          <form class="flex space-x-2">
-            <Input type="email" placeholder="Your email" class="flex-1" />
-            <Button type="submit">Subscribe</Button>
+          <form class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-2 w-full max-w-md">
+            <Input type="email" placeholder="Your email" class="flex-1 w-full" />
+            <Button type="submit" class="w-full sm:w-auto">Subscribe</Button>
           </form>
         </div>
       </div>

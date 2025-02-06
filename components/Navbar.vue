@@ -14,7 +14,7 @@ const [parent] = useAutoAnimate()
 </script>
 
 <template>
-  <nav class="fixed top-0 left-0 right-0 z-50 mx-auto max-w-[calc(100%-1rem)] sm:max-w-[calc(100%-2.5rem)] bg-gray-50 shadow-xl rounded-xl sm:rounded-2xl mx-2 sm:mx-5 mt-2 sm:mt-5 dark:bg-gray-800 border border-gray-200/50 dark:border-gray-700/50">
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-gray-50 shadow-xl dark:bg-gray-800 border border-gray-200/50 dark:border-gray-700/50 sm:mx-auto sm:max-w-[calc(100%-2.5rem)] sm:rounded-2xl sm:mt-5 sm:mx-5">
     <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
       <div class="flex justify-between h-14 sm:h-16">
         <div class="flex items-center">
