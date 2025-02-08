@@ -29,7 +29,7 @@ onMounted(() => {
   <section
     id="about"
     ref="aboutRef"
-    class="relative py-16 sm:py-20 bg-gray-100 dark:bg-gray-950 transition-all duration-300 flex items-center rounded-3xl mx-4 sm:mx-6 lg:mx-8"
+    class="relative py-16 sm:py-20 bg-gray-200 dark:bg-zinc-900  transition-all duration-300 flex items-center rounded-3xl mx-4 sm:mx-6 lg:mx-8"
     :class="{ 'opacity-0 translate-y-10': !isVisible, 'opacity-100 translate-y-0': isVisible }"
   >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -39,14 +39,14 @@ onMounted(() => {
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center justify-items-center">
-        <div class="space-y-6 text-center max-w-xl bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
+        <div class="space-y-6 text-center max-w-xl bg-white dark:bg-zinc-800 p-8 rounded-2xl shadow-lg">
           <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">Misiunea Noastră</h3>
           <p class="text-lg text-gray-600 dark:text-gray-300">
             La LawFirm, suntem dedicați să oferim reprezentare juridică excepțională, menținând cele mai înalte standarde de integritate profesională. Misiunea noastră este de a oferi soluții juridice inovatoare, adaptate nevoilor unice ale fiecărui client.
           </p>
           
           <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">Valorile Noastre</h3>
-          <ul class="space-y-4 inline-block text-left mx-auto bg-gray-50 dark:bg-gray-900 p-6 rounded-xl">
+          <ul class="space-y-4 inline-block text-left mx-auto bg-gray-100 dark:bg-zinc-900 p-6 rounded-xl">
             <li class="flex items-start">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600 mr-2 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />

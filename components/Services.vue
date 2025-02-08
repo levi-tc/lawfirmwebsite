@@ -58,7 +58,7 @@ const services = ref<Service[]>([
   <section
     id="services"
     ref="servicesRef"
-    class="relative min-h-[40vh] py-8 sm:py-12 lg:py-20 bg-white dark:bg-gray-900 transition-all duration-300"
+    class="relative min-h-[40vh] py-8 sm:py-12 lg:py-20 bg-white dark:bg-transparent transition-all duration-300"
     :class="{ 'opacity-0 translate-y-10': !isVisible, 'opacity-100 translate-y-0': isVisible }"
   >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -66,7 +66,7 @@ const services = ref<Service[]>([
         <div
           v-for="service in services"
           :key="service.title"
-          class="group relative bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200 dark:border-gray-700"
+          class="group relative bg-white dark:bg-black p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200 dark:border-zinc-800"
         >
           <div class="absolute -top-3 left-4">
             <div class="bg-blue-600 rounded-lg p-2 inline-flex">

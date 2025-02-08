@@ -3,7 +3,7 @@ import { Button } from './ui/button'
 </script>
 
 <template>
-  <footer class="bg-gray-100 dark:bg-gray-900 mt-16 rounded-t-3xl">
+  <footer class="bg-gray-100 dark:bg-zinc-900 mt-16 rounded-t-3xl">
     <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
       <div class="grid grid-cols-1 gap-8 lg:grid-cols-4 text-center lg:text-left">
         <!-- Company Info -->

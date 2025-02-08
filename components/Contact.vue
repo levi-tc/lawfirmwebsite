@@ -28,11 +28,11 @@ const handleSubmit = async (values) => {
 </script>
 
 <template>
-  <section id="contact" class="py-16 dark:bg-gray-900 rounded-3xl mx-4 sm:mx-6 lg:mx-8">
+  <section id="contact" class="py-16 dark:bg-transparent rounded-3xl mx-4 sm:mx-6 lg:mx-8">
     <div class="container mx-auto px-4">
       <div class="grid md:grid-cols-2 gap-8">
         <!-- Platform Recommendation Section -->
-        <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg transform transition-transform hover:scale-[1.02]">
+        <div class="bg-white dark:bg-zinc-800 p-8 rounded-2xl shadow-lg transform transition-transform hover:scale-[1.02]">
           <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Aflați Mai Multe Despre Serviciile Noastre</h2>
           <p class="text-gray-600 dark:text-gray-300 mb-6">
             Visit our comprehensive platform to explore detailed information about our legal services,
@@ -45,7 +45,7 @@ const handleSubmit = async (values) => {
         </div>
 
         <!-- Contact Form Section -->
-        <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg transform transition-transform hover:scale-[1.02]">
+        <div class="bg-white dark:bg-zinc-800 p-8 rounded-2xl shadow-lg transform transition-transform hover:scale-[1.02]">
           <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Contactează-ne</h2>
           <p class="text-gray-600 dark:text-gray-300 mb-6">
             Aveți întrebări sau aveți nevoie de asistență juridică? Echipa noastră este aici pentru a vă ajuta.

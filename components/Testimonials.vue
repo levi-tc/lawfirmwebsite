@@ -61,7 +61,7 @@ const testimonials = ref<Testimonial[]>([
   <section
     id="testimonials"
     ref="testimonialsRef"
-    class="relative py-16 sm:py-20 bg-gray-100 dark:bg-gray-950 transition-all duration-300 flex items-center rounded-3xl mx-4 sm:mx-6 lg:mx-8"
+    class="relative py-16 sm:py-20 bg-gray-100 dark:bg-zinc-900 transition-all duration-300 flex items-center rounded-3xl mx-4 sm:mx-6 lg:mx-8"
     :class="{ 'opacity-0 translate-y-10': !isVisible, 'opacity-100 translate-y-0': isVisible }"
   >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -74,7 +74,7 @@ const testimonials = ref<Testimonial[]>([
         <div
           v-for="testimonial in testimonials"
           :key="testimonial.name"
-          class="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200 dark:border-gray-700"
+          class="group bg-white dark:bg-zinc-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200 dark:border-zinc-700"
         >
           <div class="flex items-center mb-6">
             <img
@@ -103,7 +103,7 @@ const testimonials = ref<Testimonial[]>([
             </svg>
           </div>
 
-          <p class="text-gray-600 dark:text-gray-300 italic">"{{ testimonial.content }}"</p>
+          <p class="text-gray-600  dark:text-white italic">"{{ testimonial.content }}"</p>
         </div>
       </div>
     </div>

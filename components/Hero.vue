@@ -30,7 +30,7 @@ const attorney = ref<Attorney>({
 </script>
 
 <template>
-  <section class="relative overflow-hidden bg-white dark:bg-gray-900 min-h-[50vh] flex items-center justify-center pt-16 pb-6 lg:pt-28 lg:pb-8 mt-4 lg:mt-8">
+  <section class="relative overflow-hidden bg-white dark:bg-transparent min-h-[50vh] flex items-center justify-center pt-16 pb-6 lg:pt-28 lg:pb-8 mt-4 lg:mt-8">
     <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
         <!-- Text Content -->
@@ -41,7 +41,7 @@ const attorney = ref<Attorney>({
               Expertiză in domeniul
               <span class="text-blue-600 block mt-2">Juridic</span>
             </h1>
-            <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto lg:mx-0">
+            <p class="text-lg sm:text-xl text-gray-600 dark:text-white max-w-2xl mx-auto lg:mx-0">
               Dedicați să oferim servicii juridice excepționale cu o abordare personalizată pentru a răspunde nevoilor dumneavoastră unice.
             </p>
           </div>

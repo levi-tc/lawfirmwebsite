@@ -101,7 +101,7 @@ onMounted(() => {
 <template>
   <section
     ref="carouselRef"
-    class="relative py-24 dark:bg-gray-900 transition-all duration-1000"
+    class="relative py-24 dark:bg-transparent transition-all duration-1000"
     :class="{ 'opacity-0 translate-y-10': !isVisible, 'opacity-100 translate-y-0': isVisible }"
   >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -116,7 +116,7 @@ onMounted(() => {
           :key="post.id"
           class="flex flex-col"
         >
-          <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 h-full">
+          <div class="bg-white dark:bg-zinc-900 rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 h-full">
             <div class="aspect-video overflow-hidden">
               <img
                 :src="post.image"
