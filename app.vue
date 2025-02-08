@@ -30,8 +30,8 @@ import Footer from './components/Footer.vue'
 .content-container {
   display: flex;
   flex-direction: column;
-  gap: 4rem;
-  padding-top: 5rem;
+  gap: 0.4rem;
+  padding-top: 0.1rem;
   overflow-y: auto;
 }
 

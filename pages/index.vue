@@ -24,7 +24,7 @@ import Contact from '../components/Contact.vue'
   display: flex;
   flex-direction: column;
   gap: 4rem;
-  padding-top: 5rem;
+  padding-top: 0.2rem;
   overflow-y: auto;
 }
 

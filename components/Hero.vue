@@ -30,7 +30,7 @@ const attorney = ref<Attorney>({
 </script>
 
 <template>
-  <section class="relative overflow-hidden bg-white dark:bg-gray-900 min-h-[50vh] flex items-center justify-center pt-24 pb-6 lg:pt-28 lg:pb-8 mt-8">
+  <section class="relative overflow-hidden bg-white dark:bg-gray-900 min-h-[50vh] flex items-center justify-center pt-16 pb-6 lg:pt-28 lg:pb-8 mt-4 lg:mt-8">
     <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
         <!-- Text Content -->
@@ -72,6 +72,3 @@ const attorney = ref<Attorney>({
     </div>
   </section>
 </template>
-<style scoped>
-/* Removed animations */
-</style>
