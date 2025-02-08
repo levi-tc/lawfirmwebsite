@@ -2,16 +2,17 @@
   <div class="main-container">
     <Navbar />
     <div class="content-container">
-      <Hero />
+      <!-- <Hero />
       <Services />
       <AboutUs />
       <BlogCarousel />
-      <!-- <VideoCarousel /> -->
+      <VideoCarousel /> 
       <Testimonials />
-      <Contact />
+      <Contact /> -->
+      <NuxtPage />
     </div>
-    <Footer />
     <NuxtRouteAnnouncer />
+    <Footer />
   </div>
 </template>
 
