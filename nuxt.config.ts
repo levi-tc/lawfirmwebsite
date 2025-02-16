@@ -36,11 +36,13 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: '',
     preference: 'system',
-    fallback: 'system',
+    fallback: 'light',
     dataValue: 'theme',
     storageKey: 'nuxt-color-mode',
     classPrefix: '',
     componentName: 'ColorScheme',
-    globalName: '__NUXT_COLOR_MODE__'
+    globalName: '__NUXT_COLOR_MODE__',
+    hid: 'nuxt-color-mode-script',
+    storage: 'localStorage'
   }
 })

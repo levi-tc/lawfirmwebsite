@@ -47,7 +47,7 @@ const attorney = ref<Attorney>({
           </div>
 
           <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-            <Button size="lg" class="text-base sm:text-lg bg-blue-600 hover:bg-blue-700 w-full sm:w-auto px-8" asChild>
+            <Button size="lg" class="text-base sm:text-lg bg-blue-600 hover:bg-blue-700 dark:text-white w-full sm:w-auto px-8" asChild>
               <NuxtLink to="#contact">Programează o Consultație</NuxtLink>
             </Button>
             <Button size="lg" variant="outline" class="text-base sm:text-lg w-full sm:w-auto px-8" asChild>
