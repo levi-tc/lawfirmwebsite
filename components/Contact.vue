@@ -34,7 +34,7 @@ const handleSubmit = async (values) => {
         <!-- Platform Recommendation Section -->
         <div class="bg-white dark:bg-zinc-800 p-8 rounded-2xl shadow-lg transform transition-transform hover:scale-[1.02]">
           <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Aflați Mai Multe Despre Serviciile Noastre</h2>
-          <p class="text-gray-600 dark:text-gray-300 mb-6">
+          <p class="text-gray-600 dark:text-zinc-300 mb-6">
             Visit our comprehensive platform to explore detailed information about our legal services,
             case studies, and success stories. Get insights into how we can help protect your rights
             and achieve the best possible outcomes for your case.

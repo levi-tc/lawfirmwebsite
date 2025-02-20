@@ -4,20 +4,26 @@ import { useSupabaseClient, navigateTo } from '#imports'
 
 const email = ref('')
 const password = ref('')
+const confirmPassword = ref('')
 const error = ref('')
 
 const supabase = useSupabaseClient()
 
-async function handleLogin() {
+async function handleRegister() {
   try {
-    const { error: signInError } = await supabase.auth.signInWithPassword({
+    if (password.value !== confirmPassword.value) {
+      error.value = 'Passwords do not match'
+      return
+    }
+
+    const { error: signUpError } = await supabase.auth.signUp({
       email: email.value,
       password: password.value
     })
 
-    if (signInError) throw signInError
+    if (signUpError) throw signUpError
 
-    // Redirect to home page after successful login
+    // Redirect to confirmation page
     navigateTo('/auth/confirm')
   } catch (e: any) {
     error.value = e.message
@@ -29,12 +35,13 @@ async function handleSocialLogin(provider: 'google' | 'facebook') {
     const { error: signInError } = await supabase.auth.signInWithOAuth({
       provider
     })
-
+   
     if (signInError) throw signInError
   } catch (e: any) {
     error.value = e.message
-    navigateTo('/auth/confirm')
+    
   }
+
 }
 </script>
 
@@ -43,11 +50,11 @@ async function handleSocialLogin(provider: 'google' | 'facebook') {
     <div class="max-w-md w-full space-y-8">
       <div>
         <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
-          Sign in to your account
+          Create your account
         </h2>
       </div>
-      <form class="mt-8 space-y-6" @submit.prevent="handleLogin">
-        <div class="rounded-md shadow-sm -space-y-px">
+      <form class="mt-8 space-y-6" @submit.prevent="handleRegister">
+        <div class="rounded-md shadow-sm -space-y-px ">
           <div>
             <label for="email-address" class="sr-only">Email address</label>
             <input
@@ -68,14 +75,35 @@ async function handleSocialLogin(provider: 'google' | 'facebook') {
               name="password"
               type="password"
               required
-              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:border-zinc-700 placeholder-gray-500 dark:placeholder-zinc-400 text-gray-900 dark:text-white rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-400 dark:focus:border-blue-400 focus:z-10 sm:text-sm bg-white dark:bg-zinc-800"
+              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:border-zinc-700 placeholder-gray-500 dark:placeholder-zinc-400 text-gray-900 dark:text-white focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-400 dark:focus:border-blue-400 focus:z-10 sm:text-sm bg-white dark:bg-zinc-800"
               placeholder="Password"
+            />
+          </div>
+          <div>
+            <label for="confirm-password" class="sr-only">Confirm Password</label>
+            <input
+              id="confirm-password"
+              v-model="confirmPassword"
+              name="confirm-password"
+              type="password"
+              required
+              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:border-zinc-700 placeholder-gray-500 dark:placeholder-zinc-400 text-gray-900 dark:text-white rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-400 dark:focus:border-blue-400 focus:z-10 sm:text-sm bg-white dark:bg-zinc-800"
+              placeholder="Confirm password"
             />
           </div>
         </div>
 
-        <div v-if="error" class="text-red-500 text-sm text-center">
-          {{ error }}
+        <div v-if="error" class="rounded-md bg-red-50 dark:bg-red-900/50 p-4">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div class="ml-3">
+              <p class="text-sm font-medium text-red-800 dark:text-red-200">{{ error }}</p>
+            </div>
+          </div>
         </div>
 
         <div>
@@ -83,7 +111,7 @@ async function handleSocialLogin(provider: 'google' | 'facebook') {
             type="submit"
             class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-gray-900"
           >
-            Sign in
+            Register
           </button>
         </div>
 
@@ -116,12 +144,12 @@ async function handleSocialLogin(provider: 'google' | 'facebook') {
           </button>
         </div>
 
-        <div class="text-center mt-4">
+        <div class="text-center">
           <NuxtLink
-            to="/auth/register"
+            to="/auth/login"
             class="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
           >
-            Don't have an account? Sign up
+            Already have an account? Sign in
           </NuxtLink>
         </div>
       </form>

@@ -5,14 +5,24 @@ import { Button } from '@/components/ui/button'
 import { NuxtLink } from '#components'
 import { Menu, X } from 'lucide-vue-next'
 import ThemeToggle from './ThemeToggle.vue'
-
-defineProps<{
-  canLogin?: boolean
-  canRegister?: boolean
-}>()
+import { useSupabaseClient, useSupabaseUser } from '#imports'
+import AuthModal from './AuthModal.vue'
 
 const isOpen = ref(false)
 const [parent] = useAutoAnimate()
+
+const user = useSupabaseUser()
+const supabase = useSupabaseClient()
+
+async function handleLogout() {
+  try {
+    const { error } = await supabase.auth.signOut()
+    if (error) throw error
+    navigateTo('/auth/login')
+  } catch (e) {
+    console.error('Error logging out:', e)
+  }
+}
 </script>
 
 <template>
@@ -27,7 +37,14 @@ const [parent] = useAutoAnimate()
 
         <!-- Mobile menu button and theme toggle -->
         <div class="flex items-center md:hidden gap-2">
-         <ThemeToggle /> 
+          <ThemeToggle />
+          <div v-if="!user" class="flex gap-2">
+            <AuthModal mode="login" />
+            <AuthModal mode="register" />
+          </div>
+          <div v-else>
+            <Button variant="outline" @click="handleLogout">Logout</Button>
+          </div>
           <button
             @click="isOpen = !isOpen"
             class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-white/90 dark:text-white dark:hover:text-white dark:hover:bg-zinc-700/90 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
