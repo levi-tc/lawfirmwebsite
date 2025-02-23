@@ -1,22 +1,24 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
-import { useSupabaseClient } from '#imports'
-import { navigateTo } from '#imports'
+import { ref, onMounted, onUnmounted } from 'vue'
+import { useSupabaseClient, navigateTo } from '#imports'
 
 const supabase = useSupabaseClient()
+const checkMessage = ref('Please confirm your email by clicking the link in your inbox. Once confirmed, you will be redirected to your dashboard.')
+let intervalId: number | undefined
 
-onMounted(async () => {
-  try {
-    const { error } = await supabase.auth.getSession()
-    if (error) throw error
-    
-    // Redirect to home page after successful authentication
-    navigateTo('/dashboard')
-  } catch (e: any) {
-    console.error('Error during authentication:', e.message)
-    navigateTo('/auth/login')
-  }
-})
+onMounted(() => {
+  intervalId = window.setInterval(async () => {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session && session.user && session.user.email_confirmed_at) {
+      clearInterval(intervalId);
+      navigateTo('/dashboard');
+    }
+  }, 3000);
+});
+
+onUnmounted(() => {
+  if (intervalId) clearInterval(intervalId);
+});
 </script>
 
 <template>

@@ -1,14 +1,54 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
+import { useSupabaseClient } from '#imports'
 import Hero from '../components/Hero.vue'
+
+const supabase = useSupabaseClient()
+const errorMsg = ref('')
+
+async function ensureProfile() {
+  const { data: { session } } = await supabase.auth.getSession();
+  if (session && session.user) {
+    const user = session.user;
+    // Check if the profile record already exists
+    const { data: profiles, error: selectError } = await supabase
+      .from('profiles')
+      .select('*')
+      .eq('id', user.id);
+    if (selectError) {
+      console.error('Error fetching profile:', selectError);
+      return;
+    }
+    // If no profile exists, create one
+    if (!profiles || profiles.length === 0) {
+      const { error: insertError } = await supabase
+        .from('profiles')
+        .insert([{ 
+          id: user.id,
+          first_name: (user.user_metadata && user.user_metadata.first_name) || '',
+          last_name: (user.user_metadata && user.user_metadata.last_name) || '',
+          email: user.email
+        }]);
+      if (insertError) {
+        console.error('Error inserting profile:', insertError);
+        errorMsg.value = 'There was an error creating your profile.';
+      }
+    }
+  }
+}
+
+onMounted(() => {
+  ensureProfile();
+});
 </script>
 
 <template>
-
-    <!-- <Hero /> -->
-  <div class ="justify-center mx-16 p-20">
-    <h1>Dashboard</h1>
+  <div class="p-4">
+    <h1 class="text-2xl font-bold">Dashboard</h1>
     <p>Welcome to your dashboard!</p>
+    <p v-if="errorMsg" class="text-red-500">{{ errorMsg }}</p>
   </div>
 </template>
+
 <style>
 </style>

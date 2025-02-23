@@ -1,12 +1,70 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useSupabaseClient, navigateTo } from '#imports'
+import { SupabaseClient } from '@supabase/supabase-js'
 
 const email = ref('')
 const password = ref('')
 const error = ref('')
 
 const supabase = useSupabaseClient()
+const typedSupabase = supabase as unknown as SupabaseClient<Database>
+
+// Added isOpen ref and submitForm function for storing contact form data into Supabase
+const isOpen = ref(false);
+
+interface FormValues {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+}
+
+// Added Contact interface and updated submitForm to insert into 'contacts' table as an array
+interface Contact {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+}
+
+// Define a local Database interface for Supabase typings
+interface Database {
+  public: {
+    Tables: {
+      contacts: {
+        Row: Contact;
+        Insert: Contact;
+      };
+    };
+  };
+}
+
+async function submitForm(values: FormValues) {
+  const contact: Database["public"]["Tables"]["contacts"]["Insert"] = {
+    name: values.name,
+    email: values.email,
+    phone: values.phone,
+    message: values.message
+  };
+
+  const { data, error: insertError } = await typedSupabase
+    .from("contacts")
+    .insert([contact]);
+  if (insertError) {
+    throw insertError;
+  }
+  return data;
+}
+
+const handleSubmit = async (values: FormValues) => {
+  try {
+    await submitForm(values);
+    isOpen.value = false;
+  } catch (e) {
+    console.error(e);
+  }
+}
 
 async function handleLogin() {
   try {
@@ -20,22 +78,39 @@ async function handleLogin() {
     // Redirect to home page after successful login
     navigateTo('/auth/confirm')
   } catch (e: any) {
-    error.value = e.message
+    const errorMessage = 'Authentication failed: ' + e.message;
+    // Show error to user through UI
+    showError(errorMessage);
+    navigateTo('/auth/login');
   }
 }
 
-async function handleSocialLogin(provider: 'google' | 'facebook') {
+async function handleSocialLogin(provider: 'google') {
   try {
-    const { error: signInError } = await supabase.auth.signInWithOAuth({
-      provider
-    })
-
-    if (signInError) throw signInError
+    if (provider === 'google') {
+      const { error: signInError } = await supabase.auth.signInWithOAuth({
+        provider,
+        options: {
+          redirectTo: 'http://localhost:3000/auth/complete-registration'
+        }
+      });
+      if (signInError) throw signInError;
+      // For Google, redirection is handled by the browser after OAuth
+    } else {
+      const { error: signInError } = await supabase.auth.signInWithOAuth({
+        provider
+      });
+      if (signInError) throw signInError;
+      navigateTo('/auth/confirm');
+    }
   } catch (e: any) {
-    error.value = e.message
-    navigateTo('/auth/confirm')
+    error.value = e.message;
   }
 }
+
+onMounted(() => {
+  // Removed unnecessary IntersectionObserver code
+});
 </script>
 
 <template>
@@ -102,17 +177,6 @@ async function handleSocialLogin(provider: 'google' | 'facebook') {
               </svg>
             </div>
             Continue with Google
-          </button>
-
-          <button
-            type="button"
-            @click="handleSocialLogin('facebook')"
-            class="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#1877F2] hover:bg-[#166fe5] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1877F2] dark:focus:ring-offset-gray-900 transition-colors duration-200"
-          >
-            <svg class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-            </svg>
-            Continue with Facebook
           </button>
         </div>
 

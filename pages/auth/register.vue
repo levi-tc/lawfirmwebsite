@@ -1,13 +1,41 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useSupabaseClient, navigateTo } from '#imports'
+import { useSupabaseClient } from '#imports'
+import { SupabaseClient } from '@supabase/supabase-js'
+import { useRouter } from 'vue-router'
+
+interface Profile {
+  id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  user_name: string;
+}
+
+interface Database {
+  public: {
+    Tables: {
+      profiles: {
+        Row: Profile;
+        Insert: Profile;
+      };
+    };
+  };
+}
 
 const email = ref('')
 const password = ref('')
 const confirmPassword = ref('')
+const firstName = ref('')
+const lastName = ref('')
+const userName = ref('')
 const error = ref('')
 
 const supabase = useSupabaseClient()
+const typedSupabase = supabase as unknown as SupabaseClient<Database>
+
+// Initialize router outside the function
+const router = useRouter();
 
 async function handleRegister() {
   try {
@@ -16,32 +44,55 @@ async function handleRegister() {
       return
     }
 
-    const { error: signUpError } = await supabase.auth.signUp({
+    const { data, error: signUpError } = await supabase.auth.signUp({
       email: email.value,
-      password: password.value
+      password: password.value,
+      options: {
+        data: {
+          first_name: firstName.value,
+          last_name: lastName.value
+        }
+      }
     })
 
     if (signUpError) throw signUpError
 
-    // Redirect to confirmation page
-    navigateTo('/auth/confirm')
+    // If a user object is returned, create a profile record
+    if (data.user) {
+      const profile: Database["public"]["Tables"]["profiles"]["Insert"] = {
+         id: data.user.id,
+         first_name: firstName.value,
+         last_name: lastName.value,
+         email: email.value,
+         user_name: userName.value
+      };
+      const { error: profileError } = await typedSupabase
+         .from("profiles")
+         .insert([profile]);
+      if (profileError) throw profileError;
+    }
+
+    // Force redirect to dashboard by setting location.href
+    window.location.href = '/dashboard';
   } catch (e: any) {
     error.value = e.message
   }
 }
 
-async function handleSocialLogin(provider: 'google' | 'facebook') {
+// Updated handleSocialLogin to use browser redirect
+async function handleSocialLogin(provider: 'google') {
   try {
     const { error: signInError } = await supabase.auth.signInWithOAuth({
-      provider
-    })
-   
-    if (signInError) throw signInError
+      provider,
+      options: {
+        redirectTo: 'http://localhost:3000/auth/complete-registration'
+      }
+    });
+    if (signInError) throw signInError;
+    // No manual redirect needed; the browser will handle it
   } catch (e: any) {
-    error.value = e.message
-    
+    error.value = e.message;
   }
-
 }
 </script>
 
@@ -87,8 +138,44 @@ async function handleSocialLogin(provider: 'google' | 'facebook') {
               name="confirm-password"
               type="password"
               required
-              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:border-zinc-700 placeholder-gray-500 dark:placeholder-zinc-400 text-gray-900 dark:text-white rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-400 dark:focus:border-blue-400 focus:z-10 sm:text-sm bg-white dark:bg-zinc-800"
+              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:border-zinc-700 placeholder-gray-500 dark:placeholder-zinc-400 text-gray-900 dark:text-white focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-400 dark:focus:border-blue-400 focus:z-10 sm:text-sm bg-white dark:bg-zinc-800"
               placeholder="Confirm password"
+            />
+          </div>
+          <div>
+            <label for="first-name" class="sr-only">First Name</label>
+            <input
+              id="first-name"
+              v-model="firstName"
+              name="first-name"
+              type="text"
+              required
+              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:border-zinc-700 placeholder-gray-500 dark:placeholder-zinc-400 text-gray-900 dark:text-white focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-400 dark:focus:border-blue-400 focus:z-10 sm:text-sm bg-white dark:bg-zinc-800"
+              placeholder="First Name"
+            />
+          </div>
+          <div>
+            <label for="last-name" class="sr-only">Last Name</label>
+            <input
+              id="last-name"
+              v-model="lastName"
+              name="last-name"
+              type="text"
+              required
+              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:border-zinc-700 placeholder-gray-500 dark:placeholder-zinc-400 text-gray-900 dark:text-white focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-400 dark:focus:border-blue-400 focus:z-10 sm:text-sm bg-white dark:bg-zinc-800"
+              placeholder="Last Name"
+            />
+          </div>
+          <div>
+            <label for="user-name" class="sr-only">User Name</label>
+            <input
+              id="user-name"
+              v-model="userName"
+              name="user-name"
+              type="text"
+              required
+              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:border-zinc-700 placeholder-gray-500 dark:placeholder-zinc-400 text-gray-900 dark:text-white focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm bg-white dark:bg-zinc-800"
+              placeholder="User name (handle)"
             />
           </div>
         </div>
@@ -132,16 +219,6 @@ async function handleSocialLogin(provider: 'google' | 'facebook') {
             Continue with Google
           </button>
 
-          <button
-            type="button"
-            @click="handleSocialLogin('facebook')"
-            class="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#1877F2] hover:bg-[#166fe5] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1877F2] dark:focus:ring-offset-gray-900 transition-colors duration-200"
-          >
-            <svg class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-            </svg>
-            Continue with Facebook
-          </button>
         </div>
 
         <div class="text-center">
