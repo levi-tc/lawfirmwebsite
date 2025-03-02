@@ -91,7 +91,7 @@ async function handleSocialLogin(provider: 'google') {
       const { error: signInError } = await supabase.auth.signInWithOAuth({
         provider,
         options: {
-          redirectTo: 'http://localhost:3000/auth/complete-registration'
+          redirectTo: 'http://localhost:3000/dashboard'
         }
       });
       if (signInError) throw signInError;

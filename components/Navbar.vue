@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useAutoAnimate } from '@formkit/auto-animate/vue'
-import { Button } from '@/components/ui/button'
+import { Button } from '../components/ui/button'
 import { NuxtLink } from '#components'
 import { Menu, X } from 'lucide-vue-next'
 import ThemeToggle from './ThemeToggle.vue'

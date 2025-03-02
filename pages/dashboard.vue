@@ -3,13 +3,23 @@ import { ref, onMounted } from 'vue'
 import { useSupabaseClient } from '#imports'
 import Hero from '../components/Hero.vue'
 
+// Add definePageMeta to apply the auth middleware
+definePageMeta({
+  middleware: ['auth']
+})
+
 const supabase = useSupabaseClient()
 const errorMsg = ref('')
 
 async function ensureProfile() {
-  const { data: { session } } = await supabase.auth.getSession();
-  if (session && session.user) {
-    const user = session.user;
+  const { data: { user }, error: userError } = await supabase.auth.getUser();
+  if (userError) {
+    console.error('Error fetching authenticated user:', userError);
+    errorMsg.value = 'Authentication error. Please try logging in again.';
+    return;
+  }
+  
+  if (user) {
     // Check if the profile record already exists
     const { data: profiles, error: selectError } = await supabase
       .from('profiles')
